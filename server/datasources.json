@@ -1,0 +1,16 @@
+{
+  "mongoDs": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "imageUpload",
+    "name": "mongoDs",
+    "connector": "mongodb"
+  },
+  "storageDs": {
+    "name": "storageDs",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./server/storage",
+    "maxFileSize": "2048000"
+  }
+}
