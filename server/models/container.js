@@ -14,9 +14,7 @@ module.exports = function (container) {
         if (containers.some(function (e) {
             return e.name == containerName;
         })) {
-          console.log('test 3');
           container.upload(req, res, options, function (err, done) {
-            console.log('test 4');
             if (err) return reject(err);
             resolve(done);
           });

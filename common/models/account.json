@@ -1,13 +1,19 @@
 {
-  "name": "container",
-  "base": "Model",
+  "name": "Account",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {},
   "validations": [],
-  "relations": {},
+  "relations": {
+    "images": {
+      "type": "hasMany",
+      "model": "Image",
+      "foreignKey": ""
+    }
+  },
   "acls": [
     {
       "accessType": "*",
@@ -16,11 +22,10 @@
       "permission": "DENY"
     },
     {
-      "accessType": "EXECUTE",
+      "accessType": "READ",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW",
-      "property": "download"
+      "principalId": "$owner",
+      "permission": "ALLOW"
     }
   ],
   "methods": {}

@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = function(Image) {
+  Image.validatesPresenceOf('accountId');
+  Image.validatesPresenceOf('status');
+  Image.validatesInclusionOf('status', {'in': ['processing', 'done']});
 
   /**
    *
@@ -15,14 +18,13 @@ module.exports = function(Image) {
 
     let name = Math.floor(Math.random() * 9999999) + '.jpg';
 
-    console.log('test');
-
+    console.log(req);
     // Save file
     container.uploadFile(req, res, containerName, name)
     .then((done) => {
-      console.log('test 2');
       return Image.create({
-        container: `${containerName}/${name}`
+        name,
+        accountId: req.accessToken.userId,
       });
     })
     .then(image => {
@@ -30,5 +32,4 @@ module.exports = function(Image) {
     })
     .catch(cb);
   };
-
 };

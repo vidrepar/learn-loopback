@@ -6,7 +6,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "container": {
+    "name": {
       "type": "string",
       "required": true
     },
@@ -14,11 +14,36 @@
       "type": "date",
       "required": true,
       "defaultFn": "now"
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "processing"
     }
   },
   "validations": [],
   "relations": {},
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "upload"
+    }
+  ],
   "methods": {
     "upload": {
       "accepts": [
